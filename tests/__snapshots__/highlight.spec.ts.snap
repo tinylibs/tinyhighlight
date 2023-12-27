@@ -17,7 +17,7 @@ exports[`should highlight code 1`] = `
 [35mexport[39m [33m*[39m [35mfrom[39m [32m'module'[39m
 [35mexport[39m { test } [35mfrom[39m [32m'module'[39m
 [35mexport[39m { test [35mas[39m test2 } [35mfrom[39m [32m'module'[39m
-[35mconst[39m string [33m=[39m [32m\\"test\\"[39m
+[35mconst[39m string [33m=[39m [32m"test"[39m
 [35mconst[39m string [33m=[39m [32m\`test\`[39m
 [35mconst[39m string [33m=[39m [32m\`dsdsdt[39m[36m\${[39mtest[36m}[39m[32mst\`[39m
 [35mconst[39m string [33m=[39m [32m\`d[39m[36m\${[39m[33mSOE[39m[36m}[39m[32mdsdt[39m[36m\${[39mtest[36m}[39m[32mst\`[39m
@@ -36,5 +36,30 @@ exports[`should highlight code 1`] = `
  */[39m
 [90m/** test */[39m
 [90m// test[39m
+  "
+`;
+
+exports[`should highlight jsx code 1`] = `
+"
+[35mfunction[39m [33mTest[39m() {
+  [35mreturn[39m [33m<[39m[33mdiv[39m[33m>[39mtest[33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+}
+
+[35mfunction[39m [33mTest[39m() {
+  [35mreturn[39m [33m<[39m[33mdiv[39m[33m>[39m[33m{[39m[32m'test'[39m[33m}[39m[33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+}
+
+[35mfunction[39m [33mTest[39m() {
+  [35mreturn[39m (
+    [33m<[39m[33m>[39m
+      [33m<[39m[33mdiv[39m[33m>[39mtest[33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+      [33m<[39m[33mdiv[39m[33m>[39mtest[33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+    [33m<[39m[33m/[39m[33m>[39m
+  )
+}
+
+[35mfunction[39m [33mInvalid[39m() {
+  [35mreturn[39m [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m{test}[33m<[39m[33mdiv[39m[33m>[39m
+[37m[41m[1m}[22m[49m[39m
   "
 `;
