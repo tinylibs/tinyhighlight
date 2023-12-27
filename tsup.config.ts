@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entryPoints: ['src/index.ts', 'src/bare.ts'],
+  entryPoints: ['src/index.ts', 'src/picocolors.ts'],
   outDir: 'dist',
   format: ['esm'],
   tsconfig: './tsconfig.json',
