@@ -154,7 +154,7 @@ export function highlight(
   options: HighlightOptions = { jsx: false, colors: {} }
 ) {
   if (code) {
-    return highlightTokens(options.colors, code, options.jsx)
+    return highlightTokens(options.colors || {}, code, options.jsx)
   }
   return code
 }
