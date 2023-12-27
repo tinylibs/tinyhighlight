@@ -2,7 +2,7 @@
 
 > minimal fork of @babel/highlight 🌈
 
-This lightweight fork of [`@babel/highlight`](https://www.npmjs.com/package/@babel/highlight) tries to be the most compact library for highlighting JS/TS/JSX/TSX syntax. It also doesn't depend on any Node.js API.
+This lightweight fork of [`@babel/highlight`](https://www.npmjs.com/package/@babel/highlight) that tries to be the most compact library for highlighting JS/TS/JSX/TSX syntax. It also doesn't depend on any Node.js API.
 
 ## Usage
 

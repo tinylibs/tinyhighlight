@@ -116,7 +116,7 @@ const colorize = (defs: TokenColors, type: TokenType, value: string) => {
   return value
 }
 
-const testHighlight = (defs: TokenColors, text: string, jsx?: boolean) => {
+const highlightTokens = (defs: TokenColors, text: string, jsx?: boolean) => {
   let highlighted = ''
   let lastPotentialCallable: Token | JSXToken | null = null
   // store syntax highlighting when we check if a token is callable
@@ -130,6 +130,8 @@ const testHighlight = (defs: TokenColors, text: string, jsx?: boolean) => {
       continue
     }
 
+    // still not sure if identifier is a callable or not,
+    // so we store the syntax highlighting separetly for now
     if (
       lastPotentialCallable &&
       (token.type === 'WhiteSpace' ||
@@ -167,7 +169,7 @@ export function highlight(
   options: HighlightOptions = { jsx: false, colors: {} }
 ) {
   if (code) {
-    return testHighlight(options.colors || {}, code, options.jsx)
+    return highlightTokens(options.colors || {}, code, options.jsx)
   }
   return code
 }
