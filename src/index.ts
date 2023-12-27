@@ -72,8 +72,8 @@ type TokenType =
   | 'Keyword'
   | 'Bracket'
   | 'IdentifierCapitalized'
-  | 'IdentifierMethodName'
-  | 'PrivateIdentifierMethodName'
+  | 'IdentifierCallable'
+  | 'PrivateIdentifierCallable'
 
 export type TokenColors = Partial<Record<TokenType, (text: string) => string>>
 
@@ -98,11 +98,11 @@ const getTokenType = function (
     if (token.value[0] && token.value[0] !== token.value[0].toLowerCase())
       return 'IdentifierCapitalized'
 
-    if (isPropertyFunction(index, tokens)) return 'IdentifierMethodName'
+    if (isPropertyFunction(index, tokens)) return 'IdentifierCallable'
   }
 
   if (token.type === 'PrivateIdentifier' && isPropertyFunction(index, tokens))
-    return 'PrivateIdentifierMethodName'
+    return 'PrivateIdentifierCallable'
 
   if (token.type === 'Punctuator' && BRACKET.test(token.value)) return 'Bracket'
 

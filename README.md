@@ -11,7 +11,7 @@ Changes made to `@babel/highlight`:
 - Updated [`js-tokens`](https://github.com/lydell/js-tokens) (which adds more code, but it is up-to-date with the latest standards)
 - `chalk` is replaced with `picocolors`
 - Two methods from `@babel/helper-validator-identifier` are inlined to save space
-- Introduced a token type for methods (`IdentifierMethodName`/`PrivateIdentifierMethodName`)
+- Introduced a token type for methods (`IdentifierCallable`/`PrivateIdentifierCallable`)
 - This package is ESM-only
 
 API is not compatible with `@babel/highlight` because we use the latest `js-tokens` version.
@@ -45,9 +45,9 @@ highlight('const answer = 42', { jsx: false })
 
 You can look at [`js-tokens`](https://github.com/lydell/js-tokens) documentation to read about most of the tokens. On top of that, `tinyhighlight` also provides these tokens:
 
-**IdentifierMethodName**
+**IdentifierCallable**
 
-This is an `Identifier` that has a bracket (`(`) after it. `someName` is `IdentifierMethodName` in all of these examples:
+This is an `Identifier` that has a bracket (`(`) after it. `someName` is `IdentifierCallable` in all of these examples:
 
 ```
 someName()
@@ -63,9 +63,9 @@ class Test {
 }
 ```
 
-**PrivateIdentifierMethodName**
+**PrivateIdentifierCallable**
 
-This is a `PrivateIdentifier` that has a bracket (`(`) after it. `#someName` (`#` is also part of the value) is `IdentifierMethodName` in all of these examples:
+This is a `PrivateIdentifier` that has a bracket (`(`) after it. `#someName` (`#` is also part of the value) is `IdentifierCallable` in all of these examples:
 
 ```
 this.#someName()
