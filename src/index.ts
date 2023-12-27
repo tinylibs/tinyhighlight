@@ -82,11 +82,8 @@ interface HighlightOptions {
   colors: TokenColors
 }
 
-const getTokenType = function (
-  index: number,
-  tokens: (Token | JSXToken)[]
-): TokenType {
-  const token = tokens[index]!
+const getTokenType = function (token: Token | JSXToken): TokenType {
+  // const token = tokens[index]!
   if (token.type === 'IdentifierName') {
     if (
       isKeyword(token.value) ||
@@ -97,12 +94,7 @@ const getTokenType = function (
 
     if (token.value[0] && token.value[0] !== token.value[0].toLowerCase())
       return 'IdentifierCapitalized'
-
-    if (isPropertyFunction(index, tokens)) return 'IdentifierCallable'
   }
-
-  if (token.type === 'PrivateIdentifier' && isPropertyFunction(index, tokens))
-    return 'PrivateIdentifierCallable'
 
   if (token.type === 'Punctuator' && BRACKET.test(token.value)) return 'Bracket'
 
@@ -112,39 +104,60 @@ const getTokenType = function (
   return token.type
 }
 
-function isPropertyFunction(index: number, tokens: Array<Token | JSXToken>) {
-  let token = tokens[++index]
-  while (
-    token &&
-    (token.type === 'WhiteSpace' ||
-      token.type === 'LineTerminatorSequence' ||
-      // test?.() test!()
-      token.type === 'Punctuator' && (token.value === '(' || token.value === '?.' || token.value === '!'))
-  ) {
-    if (token.type === 'Punctuator' && token.value === '(') return true
-    token = tokens[++index]
-  }
-  return false
+function getCallableType(token: Token | JSXToken) {
+  if (token.type === 'IdentifierName') return 'IdentifierCallable'
+  if (token.type === 'PrivateIdentifier') return 'PrivateIdentifierCallable'
+  throw new Error('Not a callable token')
 }
 
-const tokenize = function* (text: string, jsx = false) {
-  const tokens = Array.from(jsTokens(text, { jsx }))
-  let index = -1
-  for (const token of tokens) {
-    index++
-    yield {
-      type: getTokenType(index, tokens),
-      value: token.value as string,
-    }
-  }
+const colorize = (defs: TokenColors, type: TokenType, value: string) => {
+  const colorize = defs[type]
+  if (colorize) return colorize(value)
+  return value
 }
 
-function highlightTokens(defs: TokenColors, text: string, jsx?: boolean) {
+const testHighlight = (defs: TokenColors, text: string, jsx?: boolean) => {
   let highlighted = ''
-  for (const { type, value } of tokenize(text, jsx)) {
-    const colorize = defs[type]
-    if (colorize) highlighted += colorize(value)
-    else highlighted += value
+  let lastPotentialCallable: Token | JSXToken | null = null
+  // store syntax highlighting when we check if a token is callable
+  // we add this to the highlighted string when we know if it's callable or not
+  let stackedHighlight = ''
+  for (const token of jsTokens(text, { jsx })) {
+    const type = getTokenType(token)
+
+    if (type === 'IdentifierName' || type === 'PrivateIdentifier') {
+      lastPotentialCallable = token
+      continue
+    }
+
+    if (
+      lastPotentialCallable &&
+      (token.type === 'WhiteSpace' ||
+        token.type === 'LineTerminatorSequence' ||
+        (token.type === 'Punctuator' &&
+          (token.value === '?.' || token.value === '!')))
+    ) {
+      stackedHighlight += colorize(defs, type, token.value)
+      continue
+    }
+
+    if (stackedHighlight && !lastPotentialCallable) {
+      highlighted += stackedHighlight
+      stackedHighlight = ''
+    }
+
+    if (lastPotentialCallable) {
+      const isCallable = token.type === 'Punctuator' && token.value === '('
+      const type = isCallable
+        ? getCallableType(lastPotentialCallable)
+        : getTokenType(lastPotentialCallable)
+      highlighted +=
+        colorize(defs, type, lastPotentialCallable.value) + stackedHighlight
+      stackedHighlight = ''
+      lastPotentialCallable = null
+    }
+
+    highlighted += colorize(defs, type, token.value)
   }
   return highlighted
 }
@@ -154,7 +167,7 @@ export function highlight(
   options: HighlightOptions = { jsx: false, colors: {} }
 ) {
   if (code) {
-    return highlightTokens(options.colors || {}, code, options.jsx)
+    return testHighlight(options.colors || {}, code, options.jsx)
   }
   return code
 }
