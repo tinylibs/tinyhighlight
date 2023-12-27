@@ -1,6 +1,6 @@
 {
   "name": "tinyhighlight",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A tiny syntax highlighter.",
   "type": "module",
   "packageManager": "pnpm@8.4.0",
