@@ -40,3 +40,29 @@ test
   `
   expect(highlight(code)).toMatchSnapshot()
 })
+
+it('should highlight jsx code', () => {
+  const code = `
+function Test() {
+  return <div>test</div>
+}
+
+function Test() {
+  return <div>{'test'}</div>
+}
+
+function Test() {
+  return (
+    <>
+      <div>test</div>
+      <div>test</div>
+    </>
+  )
+}
+
+function Invalid() {
+  return </div>{test}<div>
+}
+  `
+  expect(highlight(code, { jsx: true })).toMatchSnapshot()
+})
