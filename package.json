@@ -18,12 +18,10 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "default": "./dist/index.js"
     },
     "./picocolors": {
       "types": "./dist/picocolors.d.ts",
-      "import": "./dist/picocolors.js",
       "default": "./dist/picocolors.js"
     }
   },
@@ -48,6 +46,9 @@
       "optional": true
     }
   },
+  "dependencies": {
+    "js-tokens": "^8.0.2"
+  },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.4",
     "@size-limit/time": "^7.0.4",
@@ -55,7 +56,6 @@
     "changelogithub": "^0.6.6",
     "clean-publish": "^3.4.4",
     "husky": "^7.0.4",
-    "js-tokens": "^8.0.2",
     "nano-staged": "^0.5.0",
     "picocolors": "^1.0.0",
     "prettier": "^2.5.1",
