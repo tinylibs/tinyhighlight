@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should highlight code 1`] = `
+"
+[35mimport[39m [32m'module'[39m
+[35mimport[39m { test } [35mfrom[39m [32m'module'[39m
+[35mimport[39m [33m*[39m [35mas[39m module [35mfrom[39m [32m'module'[39m
+[35mimport[39m module [35mfrom[39m [32m'module'[39m
+[35mfunction[39m [34mtest[39m() {}
+[35mconst[39m test [33m=[39m () [33m=>[39m {}
+[35mclass[39m [33mTest[39m {}
+[35mexport[39m [35mdefault[39m test
+[35mexport[39m [35mconst[39m test [33m=[39m [32m'test'[39m
+[35mexport[39m [35mfunction[39m [34mtest[39m() {}
+[35mexport[39m [35mclass[39m [33mTest[39m {}
+[35mexport[39m [33m*[39m [35mas[39m test [35mfrom[39m [32m'module'[39m
+[35mexport[39m [33m*[39m [35mfrom[39m [32m'module'[39m
+[35mexport[39m { test } [35mfrom[39m [32m'module'[39m
+[35mexport[39m { test [35mas[39m test2 } [35mfrom[39m [32m'module'[39m
+[35mconst[39m string [33m=[39m [32m\\"test\\"[39m
+[35mconst[39m string [33m=[39m [32m\`test\`[39m
+[35mconst[39m string [33m=[39m [32m\`dsdsdt[39m[36m\${[39mtest[36m}[39m[32mst\`[39m
+[35mconst[39m string [33m=[39m [32m\`d[39m[36m\${[39m[33mSOE[39m[36m}[39m[32mdsdt[39m[36m\${[39mtest[36m}[39m[32mst\`[39m
+[35mconst[39m regexp [33m=[39m [36m/test/[39m
+[35mconst[39m test [33m=[39m (() [33m=>[39m {})()
+[34mtest[39m[33m?.[39m()
+[34mtest[39m[33m![39m()
+[34mtest[39m ()
+[34mtest[39m
+()
+{
+  console[33m.[39m[34mlog[39m([32m'test'[39m)
+}
+[90m/**
+ * test
+ */[39m
+[90m/** test */[39m
+[90m// test[39m
+  "
+`;

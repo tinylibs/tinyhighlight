@@ -54,6 +54,8 @@ someName()
 someName ()
 someName
 ()
+someName?.()
+someName!()
 property.someName()
 function someName() {}
 class Test {
@@ -70,6 +72,8 @@ this.#someName()
 this.#someName ()
 this.#someName
 ()
+this.#someName?.()
+this.#someName!()
 class Test {
   #someName() {}
 }

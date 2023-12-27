@@ -118,9 +118,10 @@ function isPropertyFunction(index: number, tokens: Array<Token | JSXToken>) {
     token &&
     (token.type === 'WhiteSpace' ||
       token.type === 'LineTerminatorSequence' ||
-      token.type === 'Punctuator')
+      // test?.() test!()
+      token.type === 'Punctuator' && (token.value === '(' || token.value === '?.' || token.value === '!'))
   ) {
-    if (token?.type === 'Punctuator' && token.value === '(') return true
+    if (token.type === 'Punctuator' && token.value === '(') return true
     token = tokens[++index]
   }
   return false
