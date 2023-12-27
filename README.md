@@ -51,6 +51,9 @@ This is an `Identifier` that has a bracket (`(`) after it. `someName` is `Identi
 
 ```
 someName()
+someName ()
+someName
+()
 property.someName()
 function someName() {}
 class Test {
@@ -64,6 +67,9 @@ This is a `PrivateIdentifier` that has a bracket (`(`) after it. `#someName` (`#
 
 ```
 this.#someName()
+this.#someName ()
+this.#someName
+()
 class Test {
   #someName() {}
 }
