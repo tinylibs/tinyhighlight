@@ -77,7 +77,7 @@ class Test {
 
 **IdentifierCapitalized**
 
-This is an `Identifier` that starts with a capital letter. For example:
+This is an `Identifier` that starts with a capital letter. `someName` is `Test` in all of these examples:
 
 ```
 Test
