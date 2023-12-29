@@ -126,6 +126,10 @@ const highlightTokens = (defs: TokenColors, text: string, jsx?: boolean) => {
     const type = getTokenType(token)
 
     if (type === 'IdentifierName' || type === 'PrivateIdentifier') {
+      if (lastPotentialCallable) {
+        highlighted += colorize(defs, getTokenType(lastPotentialCallable), lastPotentialCallable.value) + stackedHighlight
+        stackedHighlight = ''
+      }
       lastPotentialCallable = token
       continue
     }

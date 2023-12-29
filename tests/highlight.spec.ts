@@ -66,3 +66,23 @@ function Invalid() {
   `
   expect(highlight(code, { jsx: true })).toMatchSnapshot()
 })
+
+it('renders html-like file simillar to jsx', () => {
+  const html = `
+<div class="test">test</div>
+<script setup lang="ts">
+console.log("test")
+</script>
+  `
+  expect(highlight(html, { jsx: true })).toMatchSnapshot()
+})
+
+it('renders html-like file without jsx setting', () => {
+  const html = `
+<div class="test">test</div>
+<script setup lang="ts">
+console.log("test")
+</script>
+  `
+  expect(highlight(html, { jsx: false })).toMatchSnapshot()
+})

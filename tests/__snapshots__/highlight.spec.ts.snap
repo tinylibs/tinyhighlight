@@ -1,5 +1,23 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`renders html-like file simillar to jsx 1`] = `
+"
+[33m<[39m[33mdiv[39m [33mclass[39m[33m=[39m[32m"test"[39m[33m>[39mtest[33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+[33m<[39mscript setup lang[33m=[39m[32m"ts"[39m[33m>[39m
+console[33m.[39m[34mlog[39m([32m"test"[39m)
+[33m<[39m[36m/script>[39m
+  "
+`;
+
+exports[`renders html-like file without jsx setting 1`] = `
+"
+[33m<[39mdiv [35mclass[39m[33m=[39m[32m"test"[39m[33m>[39mtest[33m<[39m[36m/div>[39m
+[33m<[39mscript setup lang[33m=[39m[32m"ts"[39m[33m>[39m
+console[33m.[39m[34mlog[39m([32m"test"[39m)
+[33m<[39m[36m/script>[39m
+  "
+`;
+
 exports[`should highlight code 1`] = `
 "
 [35mimport[39m [32m'module'[39m
