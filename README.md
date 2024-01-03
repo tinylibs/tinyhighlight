@@ -2,7 +2,7 @@
 
 > minimal fork of @babel/highlight 🌈
 
-This lightweight fork of [`@babel/highlight`](https://www.npmjs.com/package/@babel/highlight) that tries to be the most compact library for highlighting JS/TS/JSX/TSX syntax. It also doesn't depend on any Node.js API.
+This is a lightweight fork of [`@babel/highlight`](https://www.npmjs.com/package/@babel/highlight) that tries to be the most compact library for highlighting JS/TS/JSX/TSX syntax. It also doesn't depend on any Node.js API.
 
 ## Usage
 
@@ -29,7 +29,7 @@ highlight('const answer = 42', {
 ```
 
 > [!TIP]
-> You can use `colors` option to provide color methods. If you support JSX, make sure to provide JSX-named colors because they use a separate token identifier.
+> You can use `colors` option to define color providers. If you support JSX, make sure to provide JSX-named properties because they use a separate token identifier.
 
 - The `./picocolors` entry point exposes `highlight` method that uses [`picocolors`](https://www.npmjs.com/package/picocolors) for styling:
 
@@ -39,11 +39,11 @@ highlight('const answer = 42', { jsx: false })
 ```
 
 > [!WARNING]
-> This package doesn't install `picocolors` automatically, you need to add it to your own dependencies if you use this option
+> This package doesn't install `picocolors` automatically, you need to add it to your own dependencies if you use this option.
 
 ## Token Types
 
-You can look at [`js-tokens`](https://github.com/lydell/js-tokens) documentation to read about most of the tokens. On top of that, `tinyhighlight` also provides these tokens:
+You can look at [`js-tokens`](https://github.com/lydell/js-tokens) documentation to read about available tokens. On top of that, `tinyhighlight` also provides these tokens:
 
 **IdentifierCallable**
 
@@ -65,7 +65,7 @@ class Test {
 
 **PrivateIdentifierCallable**
 
-This is a `PrivateIdentifier` that has a bracket (`(`) after it. `#someName` (`#` is also part of the value) is `IdentifierCallable` in all of these examples:
+This is a `PrivateIdentifier` that has a bracket (`(`) after it. `#someName` (`#` is also part of the value) is `PrivateIdentifierCallable` in all of these examples:
 
 ```
 this.#someName()
@@ -89,6 +89,9 @@ class Test {}
 function Test() {}
 function(Test) {}
 ```
+
+> [!TIP]
+> If identifier is both callable and capitalized, `IdentifierCapitalized` will be used for coloring.
 
 **Keyword**
 
